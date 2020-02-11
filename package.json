@@ -1,0 +1,10 @@
+{
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^7.18.1"
+  }
+}
