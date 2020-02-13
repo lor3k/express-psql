@@ -4,9 +4,13 @@ const pg = require('pg');
 
 // QUERIES
 const getUsersQuery = () => 'SELECT * FROM users';
+
 const getUserQuery = () => ''; // TO DO
-const createUserQuery = () => ''; // TO DO
-const updateUserQuery = () => ''; // TO DO
+
+const createUserQuery = (newUser) => 'INSERT INTO users (firstname, lastname, email, address, city) VALUES (${newUser.firstname}, ${newUser.lastname}, ${newUser.email}, ${newUser.adress}, ${newUser.city})'; // TO DO
+
+const updateUserQuery = () => 'UPDATE users SET some_column = some_value WHERE some_column = some_value;'; // TO DO
+
 const deleteUserQuery = () => ''; // TO DO
 
 // APP PORT
@@ -14,9 +18,9 @@ const port = 3000;
 
 // DATABASE CONFIG
 const data = {
-  user: 'databaseUserName', // CHANGE
-  database: 'databaseName', // CHANGE
-  password: 'password', // CHANGE
+  user: 'postgres', // CHANGE
+  database: 'bazaKrzysia', // CHANGE
+  password: 'postgres', // CHANGE
   port: 5432,
   host: 'localhost',
 };
