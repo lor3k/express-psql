@@ -90,8 +90,9 @@ router
 const app = express();
 app
   .set('port', port)
+  .use(express.static('.'))
   .use(express.json())
-  .use('/users', router);
+  .use('/api/users', router);
 
 // SERVER
 http
