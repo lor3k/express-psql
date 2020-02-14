@@ -7,7 +7,7 @@ const getUsersQuery = () => 'SELECT * FROM users';
 
 const getUserQuery = () => ''; // TO DO
 
-const createUserQuery = (newUser) => 'INSERT INTO users (firstname, lastname, email, address, city) VALUES (${newUser.firstname}, ${newUser.lastname}, ${newUser.email}, ${newUser.adress}, ${newUser.city})'; // TO DO
+const createUserQuery = (newUser) => `INSERT INTO users (firstname, lastname, email, address, city) VALUES (${newUser.firstname}, ${newUser.lastname}, ${newUser.email}, ${newUser.adress}, ${newUser.city})`; // TO DO
 
 const updateUserQuery = () => 'UPDATE users SET some_column = some_value WHERE some_column = some_value;'; // TO DO
 
