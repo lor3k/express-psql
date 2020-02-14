@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>App</title>
+  <style>
+    body {
+      margin: 20px;
+      background-color: bisque;
+      font-family: sans-serif;
+    }
+
+    label,
+    input {
+      display: inline-block;
+      width: 150px;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>Dodaj użytkownika</h3>
+
+  <form>
+    <label>Last name:</label>
+    <input id="lastname" /><br>
+    <label>First name:</label>
+    <input id="firstname" /><br>
+    <label>Address:</label>
+    <input id="address" /><br>
+    <label>City:</label>
+    <input id="city" /><br>
+    <label>Email:</label>
+    <input id="email"
+           type="email" /><br>
+    <br>
+    <button type="reset">Wyczyść</button>
+    <button type="submit">Dodaj</button>
+  </form>
+
+  <script>
+    async function postData(event) {
+      event.preventDefault();
+      const data = { lastname: lastname.value, firstname: firstname.value, address: address.value, city: city.value, email: email.value };
+      const response = await fetch('./api/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      const res = await response.text();
+      alert(res);
+    };
+    document.querySelector('form').addEventListener('submit', postData);
+  </script>
+</body>
+
+</html>

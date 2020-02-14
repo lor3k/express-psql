@@ -92,7 +92,11 @@ router
 
 // APP SETTINGS
 const app = express();
-app.set('port', port).use('/users', router);
+app
+  .set('port', port)
+  .use(express.static('.'))
+  .use(express.json())
+  .use('/api/users', router);
 
 // SERVER
 http
