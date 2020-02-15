@@ -5,13 +5,23 @@ const pg = require('pg');
 // QUERIES
 const getUsersQuery = () => 'SELECT * FROM users';
 
-const getUserQuery = () => ''; // TO DO
+const getUserQuery = (id) => {
+  if (typeof param !== 'undefined') {
+    return `SELECT * FROM users WHERE id = ${id}`;
+} else {
+  return 'SELECT * FROM users ORDER BY ID DESC LIMIT 1';
+}} 
 
-const createUserQuery = (newUser) => `INSERT INTO users (firstname, lastname, email, address, city) VALUES (${newUser.firstname}, ${newUser.lastname}, ${newUser.email}, ${newUser.adress}, ${newUser.city})`; // TO DO
+const createUserQuery = (newUser) => 
+`INSERT INTO users (firstname, lastname, email, address, city) 
+VALUES ('${newUser.firstname}', '${newUser.lastname}', '${newUser.email}', '${newUser.address}', '${newUser.city}')`;
 
-const updateUserQuery = () => 'UPDATE users SET some_column = some_value WHERE some_column = some_value;'; // TO DO
+const updateUserQuery = (change, id) => 
+`UPDATE users 
+SET firstname = '${change.firstname}', lastname = '${change.lastname}',email = '${change.email}', address = '${change.address}', city = '${change.city}' 
+WHERE id = ${id};`;
 
-const deleteUserQuery = () => ''; // TO DO
+const deleteUserQuery = (id) => `DELETE FROM users WHERE id = ${id};`; 
 
 // APP PORT
 const port = 3000;
