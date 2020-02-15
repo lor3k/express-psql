@@ -1,4 +1,4 @@
-## Zadanie
+## Zadanie 1 (branch master)
 
 - zrobić forka tego repozytorium do swojego gh,
 - utworzyć w terminalu bazę danych oraz tabelę `users` z 6 kolumnami:
@@ -8,10 +8,10 @@
 |     |           |          |       |         |      |
 
 - kolumna `id` ma się automatycznie numerować przy dodawaniu kolejnych użytkowników
-- podpiąć się w naszej aplikacji pod lokalnie postawioną (w terminalu) postgresową bazę danych
-- napisać zapytanie do tworzenia użytkownika
+- podpiąć się w naszej aplikacji (branch master) pod lokalnie postawioną (w terminalu) postgresową bazę danych
+- napisać zapytanie SQL do tworzenia użytkownika
 - dodać 5 użytkowników używając `POST` w [postmanie](https://www.postman.com/) wykorzystując odpowiedni route oraz napisane w poprzednim kroku zapytanie
-- napisać zapytanie do _edycji_ oraz _usuwania_ użytkownika
+- napisać zapytanie SQL do _edycji_ oraz _usuwania_ użytkownika
 - zmienić dane w postmanie (`PUT`) wybranego użytkownika oraz usunąć (`DELETE`) innego wybranego użytkownika
 - wystawić _pull request_: branch na forku -> branch master w tym repozytorium
 
@@ -44,3 +44,9 @@ Zadanie z \* (ty nie zrobisz ?!):
     ]
 }
 ```
+
+## Zadanie 2 (branch with-sequelize)
+
+- utworzyć controllery obsługujące dodawanie nowego użytkownika, korzystając z przykładu pobierania wszystkich użytkowników.
+- dodać do routingu, tak by aplikacja działała tak jak w zadaniu 1
+- korzystać z: [Sequelize](https://sequelize.org/)
