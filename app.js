@@ -4,19 +4,33 @@ const pg = require('pg');
 
 // QUERIES
 const getUsersQuery = () => 'SELECT * FROM users';
-const getUserQuery = () => ''; // TO DO
-const createUserQuery = () => ''; // TO DO
-const updateUserQuery = () => ''; // TO DO
-const deleteUserQuery = () => ''; // TO DO
+
+const getUserQuery = (id) => {
+  if (typeof param !== 'undefined') {
+    return `SELECT * FROM users WHERE id = ${id}`;
+} else {
+  return 'SELECT * FROM users ORDER BY ID DESC LIMIT 1';
+}} 
+
+const createUserQuery = (newUser) => 
+`INSERT INTO users (firstname, lastname, email, address, city) 
+VALUES ('${newUser.firstname}', '${newUser.lastname}', '${newUser.email}', '${newUser.address}', '${newUser.city}')`;
+
+const updateUserQuery = (change, id) => 
+`UPDATE users 
+SET firstname = '${change.firstname}', lastname = '${change.lastname}',email = '${change.email}', address = '${change.address}', city = '${change.city}' 
+WHERE id = ${id};`;
+
+const deleteUserQuery = (id) => `DELETE FROM users WHERE id = ${id};`; 
 
 // APP PORT
 const port = 3000;
 
 // DATABASE CONFIG
 const data = {
-  user: 'databaseUserName', // CHANGE
-  database: 'databaseName', // CHANGE
-  password: 'password', // CHANGE
+  user: 'postgres', // CHANGE
+  database: 'bazaKrzysia', // CHANGE
+  password: 'postgres', // CHANGE
   port: 5432,
   host: 'localhost',
 };
