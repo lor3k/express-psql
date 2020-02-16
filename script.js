@@ -38,7 +38,7 @@ function renderTable(data) {
 
     const cell = document.createElement('td');
     const button = document.createElement('button');
-    button.innerText = 'Delete';
+    button.innerText = 'Usuń';
     cell.appendChild(button);
     const id = row.querySelector('td').innerText;
     button.addEventListener('click', () => {
