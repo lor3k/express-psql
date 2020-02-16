@@ -4,6 +4,12 @@ const pg = require('pg');
 
 // QUERIES
 const getUsersQuery = () => 'SELECT * FROM users';
+const getCitiesQuery = cityNames => {
+  const cityNamesJoined = cityNames
+    .map(city => `name = '${city}'`)
+    .join(' OR ');
+  return `SELECT * from cities WHERE ${cityNamesJoined}`;
+};
 const getUserQuery = () => ''; // TO DO
 const createUserQuery = () => ''; // TO DO
 const updateUserQuery = () => ''; // TO DO
@@ -14,9 +20,9 @@ const port = 3000;
 
 // DATABASE CONFIG
 const data = {
-  user: 'databaseUserName', // CHANGE
-  database: 'databaseName', // CHANGE
-  password: 'password', // CHANGE
+  user: 'pawel',
+  database: 'pawel',
+  password: 'pawel',
   port: 5432,
   host: 'localhost',
 };
@@ -35,8 +41,25 @@ const router = express.Router();
 // ROUTER HANDLERS
 const getUsers = async (req, res) => {
   try {
-    const result = await client.query(getUsersQuery());
-    res.status(200).send({ data: result.rows });
+    const usersResult = await client.query(getUsersQuery());
+    const users = usersResult.rows;
+
+    if (req.query['city-details'] === 'true') {
+      const cityNames = usersResult.rows.map(user => user.city);
+      const cityNamesUnique = Array.from(new Set(cityNames));
+      const cityResult = await client.query(getCitiesQuery(cityNamesUnique));
+      const cityObjects = cityResult.rows;
+
+      const data = users.map(user => {
+        const defaultCity = { name: user.city };
+        const cityFromTable = cityObjects.find(city => city.name === user.city);
+        return { ...user, city: cityFromTable || defaultCity };
+      });
+
+      res.status(200).send({ data });
+    } else {
+      res.status(200).send({ data: users });
+    }
   } catch (err) {
     console.log(err);
   }
