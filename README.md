@@ -19,7 +19,7 @@ Zadanie z \* (ty nie zrobisz ?!):
 
 - utworzyć w terminalu w naszej bazie danych nową tabelę `cities`:
 
-| id  | city | country | population |
+| id  | name | country | population |
 | --- | ---- | ------- | ---------- |
 |     |      |         |            |
 
@@ -35,12 +35,13 @@ Zadanie z \* (ty nie zrobisz ?!):
             "email": "kowalskiii@example.com"
             "address": "Łaciata 188/22",
             "city": {
-              name: "Warszawa",
-              country: "Poland",
-              population: 1783321
+                "id": 1,
+                "name": "Warszawa",
+                "country": "Poland",
+                "population": 1783000
             },
         },
-...
+    ...
     ]
 }
 ```
