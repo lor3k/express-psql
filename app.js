@@ -5,12 +5,18 @@ const pg = require('pg');
 // QUERIES
 const getUsersQuery = () => 'SELECT * FROM users';
 
+const getCityDetails = (cities) => {
+  if (cities == "true")
+    return 'SELECT city, country, population FROM cities';
+}
+
 const getUserQuery = (id) => {
-  if (typeof param !== 'undefined') {
+  if (typeof id !== "undefined") {
     return `SELECT * FROM users WHERE id = ${id}`;
-} else {
-  return 'SELECT * FROM users ORDER BY ID DESC LIMIT 1';
-}} 
+  } else {
+    return 'SELECT * FROM users ORDER BY ID DESC LIMIT 1';
+  };
+} 
 
 const createUserQuery = (newUser) => 
 `INSERT INTO users (firstname, lastname, email, address, city) 
@@ -49,8 +55,10 @@ const router = express.Router();
 // ROUTER HANDLERS
 const getUsers = async (req, res) => {
   try {
-    const result = await client.query(getUsersQuery());
-    res.status(200).send({ data: result.rows });
+    const users = await client.query(getUsersQuery());
+    const cities = await client.query(getCityDetails(req.query.citydetails));
+    const result = users;
+    res.status(200).send({ data: result.rows});
   } catch (err) {
     console.log(err);
   }
@@ -95,7 +103,7 @@ const deleteUser = async (req, res, next) => {
 // ROUTER ROUTES
 router
   .get('/', getUsers)
-  .get('/:id', getUser)
+  .get('/:id', getUser) 
   .post('/', createUser, getUser)
   .put('/:id', updateUser, getUser)
   .delete('/:id', deleteUser, getUsers);
