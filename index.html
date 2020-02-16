@@ -7,7 +7,7 @@
   <title>App</title>
   <style>
     body {
-      margin: 20px;
+      padding: 30px;
       background-color: bisque;
       font-family: sans-serif;
     }
@@ -15,15 +15,30 @@
     label,
     input {
       display: inline-block;
-      width: 150px;
+      width: 200px;
       margin: 5px 0;
     }
+
+    table {
+      font-size: 14px;
+      width: 100%;
+    }
+
+    th,
+    td {
+      text-align: left;
+      border: 1px solid black;
+      padding: 5px;
+    }
+
   </style>
 </head>
 
 <body>
-  <h3>Dodaj użytkownika</h3>
+  <h3>Użytkownicy</h3>
+  <table></table>
 
+  <h3>Dodaj użytkownika</h3>
   <form>
     <label>Last name:</label>
     <input id="lastname" /><br>
@@ -41,16 +56,7 @@
     <button type="submit">Dodaj</button>
   </form>
 
-  <script>
-    async function postData(event) {
-      event.preventDefault();
-      const data = { lastname: lastname.value, firstname: firstname.value, address: address.value, city: city.value, email: email.value };
-      const response = await fetch('./api/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-      const res = await response.text();
-      alert(res);
-    };
-    document.querySelector('form').addEventListener('submit', postData);
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>

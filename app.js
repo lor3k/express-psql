@@ -11,9 +11,12 @@ const getCitiesQuery = cityNames => {
   return `SELECT * from cities WHERE ${cityNamesJoined}`;
 };
 const getUserQuery = () => ''; // TO DO
-const createUserQuery = () => ''; // TO DO
+const createUserQuery = ({ lastname, firstname, address, city, email }) => ({
+  text: 'INSERT INTO users VALUES (DEFAULT, $1, $2, $3, $4, $5, NOW(), NOW());',
+  values: [lastname, firstname, address, city, email],
+});
 const updateUserQuery = () => ''; // TO DO
-const deleteUserQuery = () => ''; // TO DO
+const deleteUserQuery = index => `DELETE FROM users WHERE id='${index}'`;
 
 // APP PORT
 const port = 3000;
@@ -105,7 +108,7 @@ const deleteUser = async (req, res, next) => {
 router
   .get('/', getUsers)
   .get('/:id', getUser)
-  .post('/', createUser, getUser)
+  .post('/', createUser, getUsers)
   .put('/:id', updateUser, getUser)
   .delete('/:id', deleteUser, getUsers);
 
