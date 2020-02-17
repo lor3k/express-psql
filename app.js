@@ -20,18 +20,11 @@ const deleteUserQuery = index => `DELETE FROM users WHERE id='${index}'`;
 
 // APP PORT
 const port = 3000;
-
-// DATABASE CONFIG
-const data = {
-  user: 'pawel',
-  database: 'pawel',
-  password: 'pawel',
-  port: 5432,
-  host: 'localhost',
-};
+const localDatabase = 'postgres://pawel:pawel@localhost:5432/pawel';
+const dataBaseUrl = process.env.DATABASE_URL || localDatabase;
 
 // POSTGRES CLIENT
-const client = new pg.Client(data);
+const client = new pg.Client(dataBaseUrl);
 
 client
   .connect()
