@@ -19,7 +19,7 @@ const updateUserQuery = () => ''; // TO DO
 const deleteUserQuery = index => `DELETE FROM users WHERE id='${index}'`;
 
 // APP PORT
-const port = 3000;
+const port = process.env.PORT || 3000;
 const localDatabase = 'postgres://pawel:pawel@localhost:5432/pawel';
 const dataBaseUrl = process.env.DATABASE_URL || localDatabase;
 
